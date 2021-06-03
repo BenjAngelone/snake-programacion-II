@@ -19,7 +19,7 @@ using namespace std;
     Tamaño_y=y;
   }
   void juego::setCodex(int x,int y,int c){
-    Codex[x][y]=c;
+  Codex[x][y]=c;
   }
 
   int juego::getpuntos(){
@@ -39,10 +39,10 @@ using namespace std;
   void juego::Definir_tablero(){
       for(int i =0;i<=getTamaño_y();i++){
         for(int j =0;j<=getTamaño_x();j++){
-            if(j==0)Codex[j][i]=2;
-            if(j==getTamaño_x())Codex[j][i]=2;
-            if(i==0)Codex[j][i]=3;
-            if(i==getTamaño_y())Codex[j][i]=-3;
+            if(j==0)setCodex(j,i,2);
+            if(j==getTamaño_x())setCodex(j,i,2);
+            if(i==0)setCodex(j,i,3);
+            if(i==getTamaño_y())setCodex(j,i,3);
         }
 }
 

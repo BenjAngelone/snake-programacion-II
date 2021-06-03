@@ -1,14 +1,24 @@
 #include "vibora.h"
 #include <iostream>
 #include <string.h>
+#include "juego.h"
 using namespace std;
 
-  vibora::vibora(){
+  vibora::vibora(int a, int b, int c, int d,char e ,char f){
     Cabeza_x=1;
     Cola_x=0;
     Cabeza_y=1;
     Cola_y=0;
-    Nopizarse="F";
+    Nopizarse=0;
+    Direcion=f;
+  }
+
+  void vibora::setDirecion(char f){
+     Direcion=f;
+  }
+
+  char vibora::getDirecion(){
+     return Direcion;
   }
   void vibora::setCabeza_x(int x){
     Cabeza_x+=x;
@@ -46,9 +56,9 @@ using namespace std;
   }
   
 
-  void vibora::obtenerDireccionCola(){
+  void vibora::obtenerDireccionCola(juego G){
     if(getCola_y()==0 || getCola_x()==0)return;
-    switch (getCodex(getCola_x(),getCola_y()))
+    switch (G.getCodex(getCola_x(),getCola_y()))
             {
             case 4:
                 setCola_y(1);
@@ -62,34 +72,34 @@ using namespace std;
             case 6:
                 setCola_x(-1);
                 break;
-            if(CheckFood())return;
-            setCodex(getCola_x(),getCola_y(),0);
+            if(G.CheckFood(G.getTamaño_x(),G.getTamaño_y()))G.Generar_comida();return;
+            G.setCodex(getCola_x(),getCola_y(),0);
 } 
 }
   
-  void vibora::obtenerDireccionCaveza(){
+  void vibora::obtenerDireccionCaveza(juego G){
 
-    if (getNopizarse()==getDireccion())cout<<"Valor no valido";return;
-    switch (getDireccion())
+    if (getNopizarse()==getDirecion())cout<<"Valor no valido";return;
+    switch (getDirecion())
     {
-    case "N":
-        setCodex(getCabezax(),getCabeza_y(),4);
+    case 'n':
+        G.setCodex(getCabeza_x(),getCabeza_y(),4);
         setCabeza_y(1);
-        setNopizarse("S");
+        setNopizarse('s');
         break;
-    case "S":
-        setCodex(getCabezax(),getCabeza_y(),5);
+    case 's':
+        G.setCodex(getCabeza_x(),getCabeza_y(),5);
         setCabeza_y(-1);
-        setNopizarse("N");
+        setNopizarse('n');
         break;
-    case "E":
-        setCodex(getCabezax(),getCabeza_y(),7);
+    case 'e':
+        G.setCodex(getCabeza_x(),getCabeza_y(),7);
         setCabeza_x(1);
-        setNopizarse("O");
+        setNopizarse('o');
         break;
-    case "O":
-        setCodex(getCabezax(),getCabeza_y(),6);
-        setNopizarse("E");
+    case 'o':
+        G.setCodex(getCabeza_x(),getCabeza_y(),6);
+        setNopizarse('e');
         setCabeza_x(-1);
         break; 
     default:
