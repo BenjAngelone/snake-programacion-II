@@ -1,5 +1,3 @@
-#include <string.h>
-
 
 class juego{
   protected:
@@ -10,6 +8,7 @@ class juego{
   public:
   juego(int, int);
 
+
   void setTamaño_x(int);
   void setTamaño_y(int);
   void setpuntos();
@@ -19,6 +18,8 @@ class juego{
   int getTamaño_y();
   int getpuntos ();
   int getCodex(int,int);
+
+
 
   void Generar_comida();
   bool CheckFood(int ,int);

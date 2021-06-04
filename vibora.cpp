@@ -4,13 +4,13 @@
 #include "juego.h"
 using namespace std;
 
-  vibora::vibora(int a, int b, int c, int d,char e ,char f){
+  vibora::vibora(int a, int b, int c, int d,char f){
     Cabeza_x=1;
-    Cola_x=0;
+    Cola_x=1;
     Cabeza_y=1;
-    Cola_y=0;
-    Nopizarse=0;
+    Cola_y=1;
     Direcion=f;
+
   }
 
   void vibora::setDirecion(char f){
@@ -22,26 +22,21 @@ using namespace std;
   }
   void vibora::setCabeza_x(int x){
     Cabeza_x+=x;
-    
+
   }
   void vibora::setCola_x(int y){
     Cola_x+=y;
-    
+
   }
   void vibora::setCabeza_y(int z){
     Cabeza_y+=z;
-    
+
   }
   void vibora::setCola_y(int c){
     Cola_y+=c;
   }
-  void vibora::setNopizarse(char f){
-    Nopizarse=f;
-  }
 
-  char vibora::getNopizarse(){
-     return Nopizarse;
-  }
+
   int vibora::getCabeza_x(){
     return Cabeza_x;
   }
@@ -54,59 +49,61 @@ using namespace std;
   int vibora::getCola_y(){
     return Cola_y;
   }
-  
 
-  void vibora::obtenerDireccionCola(juego G){
-    if(getCola_y()==0 || getCola_x()==0)return;
-    switch (G.getCodex(getCola_x(),getCola_y()))
+  bool vibora::obtenerDireccionCola(int v,int c){
+    cout<<"Valor cola "<< v <<" Valor cabeza " <<c<<endl;
+    switch (c)
             {
             case 4:
                 setCola_y(1);
+                cout<<"n "<<endl;
                 break;
             case 5:
                 setCola_y(-1);
+                cout<<"s"<<endl;
                 break;
             case 7:
                 setCola_x(1);
+                cout<<"e "<<endl;
                 break;
             case 6:
                 setCola_x(-1);
+                cout<<"o "<<endl;
                 break;
-            if(G.CheckFood(G.getTamaño_x(),G.getTamaño_y()))G.Generar_comida();return;
-            G.setCodex(getCola_x(),getCola_y(),0);
-} 
-}
-  
-  void vibora::obtenerDireccionCaveza(juego G){
+            default:
+                return false;
+            }
+            
+  return false;
 
-    if (getNopizarse()==getDirecion())cout<<"Valor no valido";return;
+
+}
+
+  int vibora::obtenerDireccionCaveza(){
+
     switch (getDirecion())
     {
     case 'n':
-        G.setCodex(getCabeza_x(),getCabeza_y(),4);
         setCabeza_y(1);
-        setNopizarse('s');
+        return 4;
         break;
     case 's':
-        G.setCodex(getCabeza_x(),getCabeza_y(),5);
         setCabeza_y(-1);
-        setNopizarse('n');
+        return 5;
         break;
     case 'e':
-        G.setCodex(getCabeza_x(),getCabeza_y(),7);
         setCabeza_x(1);
-        setNopizarse('o');
+        return 7;
         break;
     case 'o':
-        G.setCodex(getCabeza_x(),getCabeza_y(),6);
-        setNopizarse('e');
         setCabeza_x(-1);
-        break; 
+        return 6;
+        break;
     default:
         cout<<"Valor no valido"<<endl;
         break;
     }
-    
+
 }
 
 

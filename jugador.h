@@ -8,6 +8,4 @@ class jugador{
   void setNombre(char*);
 
   char* getNombre();
-
-  void Dibujar();
 };
