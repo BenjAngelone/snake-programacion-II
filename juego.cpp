@@ -73,17 +73,11 @@ using namespace std;
   void juego::ColisionDetector(int Vcx,int Vcy){
     cout<<"Chequeando:  "<<getCodex(Vcx,Vcy)<<endl;
     int chau;
-    if(getCodex(Vcx,Vcy)==3 || getCodex(Vcx,Vcy)==-3 || getCodex(Vcx,Vcy)==2 ||getCodex(Vcx,Vcy)==-2){
+    if(getCodex(Vcx,Vcy)==3 || getCodex(Vcx,Vcy)==-3 || getCodex(Vcx,Vcy)==2 ||getCodex(Vcx,Vcy)== 5 ||getCodex(Vcx,Vcy)== 7 ||getCodex(Vcx,Vcy)== 4 ||getCodex(Vcx,Vcy)== 6 ||getCodex(Vcx,Vcy)==-2){
       system("clear");
       cout<<"Game over "<<endl<<"Puntuacion: "<<getpuntos();
       cin>>chau;
-    if(getCodex(Vcx,Vcy)== 4 || getCodex(Vcx,Vcy)== 5 || getCodex(Vcx,Vcy)== 6 || getCodex(Vcx,Vcy)== 7 || getCodex(Vcx,Vcy)== -1){
-      system("clear");
-      cout<<"Game over "<<endl<<"Puntuacion: "<<getpuntos();
-      cin>>chau;
-    return;
-        
-  }  
+      return;
   }
   }
 

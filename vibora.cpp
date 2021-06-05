@@ -53,7 +53,7 @@ using namespace std;
   bool vibora::obtenerDireccionCola(int cola ,int  cabesa ,  int p){
     cout<<"Valor cola "<< cola <<" Valor cabeza " <<cabesa<<endl;
     cout<<"Puntos: "<< p <<endl;
-    if(p==0)cola=cabesa;
+    //if(p==0)cola=cabesa;
     switch (cola)
             {
             case 4:
