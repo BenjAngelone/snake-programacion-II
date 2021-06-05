@@ -46,31 +46,38 @@ void Dibujar(juego A){
 
 int main(){
   char dir;
+  int food;
   juego  A(15,16);
   vibora  V(1,1,1,1,'n');
   A.Definir_tablero();
   A.Generar_comida();
   while (true)
   {
-    Dibujar(A);
+    Dibujar(A); 
     cout<<endl<<"Ingrese un valor(n,s,e,o): ";
     cin>>dir;
     system("clear");
     //system("cls");
     V.setDirecion(dir);
-
-    V.obtenerDireccionCola(A.getCodex(V.getCola_x(),V.getCola_y()),A.getCodex(V.getCabeza_x(),V.getCabeza_y()));
-
+    int c=V.obtenerDireccionCaveza();//posicion virtual de la cabeza
+    if(A.CheckFood(V.getCabeza_x(),V.getCabeza_y())){
+        cout<<"comi"<<endl;A.Generar_comida(); //come y no borra la  cola
+        food=1;
+    }
+    else{ 
+        food=0;
+    }
+    A.ColisionDetector(V.getCabeza_x(),V.getCabeza_y());//detecta coliciones 
+    A.setCodex(V.getCabeza_x(),V.getCabeza_y(),c);//avanza la cabeza
+    
+    V.obtenerDireccionCola(A.getCodex(V.getCola_x(),V.getCola_y()),A.getCodex(V.getCabeza_x(),V.getCabeza_y()),A.getpuntos ());//sincroniza la cola
+    if(food==0){
+        A.setCodex(V.getCola_x(),V.getCola_y(),0);//borra la  cola
+    }
     cout<<"Posicion cola ( "<< V.getCola_x() <<" , "<<V.getCola_y() <<" )"<<endl;
     cout<<"Posicion Cabeza ( "<< V.getCabeza_x() <<" , "<<V.getCabeza_y() <<" )"<<endl;
     
-    if(A.CheckFood(V.getCabeza_x(),V.getCabeza_y())){cout<<"comi"<<endl;A.Generar_comida(); 
-    }else A.setCodex(V.getCola_x(),V.getCola_y(),0);
-
-    A.setCodex(V.getCabeza_x(),V.getCabeza_y(),V.obtenerDireccionCaveza());//avanza la cabeza
-
-    A.ColisionDetector(V.getCabeza_x(),V.getCabeza_y());
-
+    
 
 }
 }

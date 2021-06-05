@@ -25,5 +25,6 @@ class juego{
   bool CheckFood(int ,int);
   void ColisionDetector(int,int);
   void Definir_tablero();
+  
 
 };

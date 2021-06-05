@@ -25,6 +25,6 @@ class vibora{
   int getCabeza_y();
   int getCola_y();
 
-  bool obtenerDireccionCola(int,int);
+  bool obtenerDireccionCola(int,int,int);
   int obtenerDireccionCaveza();
 };

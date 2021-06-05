@@ -50,28 +50,30 @@ using namespace std;
     return Cola_y;
   }
 
-  bool vibora::obtenerDireccionCola(int v,int c){
-    cout<<"Valor cola "<< v <<" Valor cabeza " <<c<<endl;
-    switch (c)
+  bool vibora::obtenerDireccionCola(int cola ,int  cabesa ,  int p){
+    cout<<"Valor cola "<< cola <<" Valor cabeza " <<cabesa<<endl;
+    cout<<"Puntos: "<< p <<endl;
+    if(p==0)cola=cabesa;
+    switch (cola)
             {
             case 4:
                 setCola_y(1);
-                cout<<"n "<<endl;
+                cout<<"Direcion cola:  n "<<endl;
                 break;
             case 5:
                 setCola_y(-1);
-                cout<<"s"<<endl;
+                cout<<"Direcion cola:  s"<<endl;
                 break;
             case 7:
                 setCola_x(1);
-                cout<<"e "<<endl;
+                cout<<"Direcion cola:  e "<<endl;
                 break;
             case 6:
                 setCola_x(-1);
-                cout<<"o "<<endl;
+                cout<<"Direcion cola:  o "<<endl;
                 break;
             default:
-                return false;
+                cout<<"No encuentro mi cola"<<endl;return false;
             }
             
   return false;

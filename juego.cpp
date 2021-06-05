@@ -48,7 +48,7 @@ using namespace std;
             if(i==getTamaño_y())setCodex(j,i,2);
         }
 }
-
+  //Codex[1][1]=4;
   }
   void juego::Generar_comida(){
     int ranx = rand() % getTamaño_x() + 1;
@@ -58,6 +58,7 @@ using namespace std;
         int rany = rand() % getTamaño_y() + 1;
         if(getCodex(ranx,rany)==0)setCodex(ranx,rany,8);break;
     }
+    cout<<"Posicion comida ( "<<ranx<<" , "<<rany <<" )"<<endl;
 
   }
 
@@ -70,12 +71,20 @@ using namespace std;
   }
 
   void juego::ColisionDetector(int Vcx,int Vcy){
-    if(Vcx==0  && Vcx==getTamaño_x()  && Vcy==0  && Vcy==getTamaño_y())cout<<"Game over "<<endl<<"Puntuacion: "<<getpuntos();return;
-    for(int i =1;i<getTamaño_y();i++){
-        for(int j =1;j<getTamaño_x();j++){
-            if(getCodex(j,i)== 4 || getCodex(j,i)== 5 || getCodex(j,i)== 6 || getCodex(j,i)== 7 || getCodex(j,i)== -1)cout<<"Game over "<<endl<<"Puntuacion: "<<getpuntos();return;
-        }
-    }
+    cout<<"Chequeando:  "<<getCodex(Vcx,Vcy)<<endl;
+    int chau;
+    if(getCodex(Vcx,Vcy)==3 || getCodex(Vcx,Vcy)==-3 || getCodex(Vcx,Vcy)==2 ||getCodex(Vcx,Vcy)==-2){
+      system("clear");
+      cout<<"Game over "<<endl<<"Puntuacion: "<<getpuntos();
+      cin>>chau;
+    if(getCodex(Vcx,Vcy)== 4 || getCodex(Vcx,Vcy)== 5 || getCodex(Vcx,Vcy)== 6 || getCodex(Vcx,Vcy)== 7 || getCodex(Vcx,Vcy)== -1){
+      system("clear");
+      cout<<"Game over "<<endl<<"Puntuacion: "<<getpuntos();
+      cin>>chau;
+    return;
+        
+  }  
+  }
   }
 
 
