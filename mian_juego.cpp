@@ -61,21 +61,15 @@ int main(){
     V.setDirecion(dir);
     int c=V.obtenerDireccionCaveza();//posicion virtual de la cabeza
     if(A.CheckFood(V.getCabeza_x(),V.getCabeza_y())){
-        cout<<"comi"<<endl;A.Generar_comida(); //come y no borra la  cola
-        food=1;
+        cout<<"comi"<<endl;
+        A.Generar_comida(); //come 
     }
-    else{ 
-        food=0;
-    }
+
     A.ColisionDetector(V.getCabeza_x(),V.getCabeza_y());//detecta coliciones 
     A.setCodex(V.getCabeza_x(),V.getCabeza_y(),c);//avanza la cabeza
-    
-    V.obtenerDireccionCola(A.getCodex(V.getCola_x(),V.getCola_y()),A.getCodex(V.getCabeza_x(),V.getCabeza_y()),A.getpuntos ());//sincroniza la cola
-    if(food==0){
-        A.setCodex(V.getCola_x(),V.getCola_y(),0);//borra la  cola
-    }
-    cout<<"Posicion cola ( "<< V.getCola_x() <<" , "<<V.getCola_y() <<" )"<<endl;
-    cout<<"Posicion Cabeza ( "<< V.getCabeza_x() <<" , "<<V.getCabeza_y() <<" )"<<endl;
+    A.borrarcola(V.getCabeza_x(),V.getCabeza_y());//busca y borra  la cola
+    cout<<"Puntos de "<<dir <<" : "<<A.getpuntos()<<endl;
+    //cout<<"Posicion Cabeza ( "<< V.getCabeza_x() <<" , "<<V.getCabeza_y() <<" )"<<endl;
     
     
 

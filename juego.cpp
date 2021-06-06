@@ -51,14 +51,13 @@ using namespace std;
   //Codex[1][1]=4;
   }
   void juego::Generar_comida(){
-    int ranx = rand() % getTamaño_x() + 1;
-    int rany = rand() % getTamaño_y() + 1;
+    int ranx = rand() % (getTamaño_x()-1) + 1;
+    int rany = rand() % (getTamaño_y()-1) + 1;
     while(getCodex(ranx,rany)!=0){
-        int ranx = rand() % getTamaño_x() + 1;
-        int rany = rand() % getTamaño_y() + 1;
-        if(getCodex(ranx,rany)==0)setCodex(ranx,rany,8);break;
+        int ranx = rand() % (getTamaño_x()-1) + 1;
+        int rany = rand() % (getTamaño_y()-1) + 1;
     }
-    cout<<"Posicion comida ( "<<ranx<<" , "<<rany <<" )"<<endl;
+    setCodex(ranx,rany,8);
 
   }
 
@@ -69,9 +68,42 @@ using namespace std;
     }
     return false;
   }
+  void  juego::borrarcola(int cabesax ,int  cabesay){
+    int  Vp=puntos;
+    int  Vx=cabesax;
+    int  Vy=cabesay;
+    bool cc=true;
+    while (cc)
+    {
+    
+    
+    switch (getCodex(Vx,Vy))
+            {
+            case 4:
+                Vy--;
+                break;
+            case 5:
+                Vy++;
+                
+                break;
+            case 7:
+                Vx--;
+                break;
+            case 6:
+                Vx++;
+                break;
+            default:
+              cc=false;
+                break;
+            }
+            if (Vp<=0){
+              setCodex(Vx,Vy,0);
+            }
+            Vp--;
 
+  }}
   void juego::ColisionDetector(int Vcx,int Vcy){
-    cout<<"Chequeando:  "<<getCodex(Vcx,Vcy)<<endl;
+    
     int chau;
     if(getCodex(Vcx,Vcy)==3 || getCodex(Vcx,Vcy)==-3 || getCodex(Vcx,Vcy)==2 ||getCodex(Vcx,Vcy)== 5 ||getCodex(Vcx,Vcy)== 7 ||getCodex(Vcx,Vcy)== 4 ||getCodex(Vcx,Vcy)== 6 ||getCodex(Vcx,Vcy)==-2){
       system("clear");
