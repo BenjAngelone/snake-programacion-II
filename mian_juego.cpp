@@ -10,8 +10,6 @@ using namespace std;
 
 
 int main(){
-  char dir;
-  int food;
 
   juego  A(15,16);
   jugador J("BENJA");
