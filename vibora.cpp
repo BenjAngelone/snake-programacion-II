@@ -81,28 +81,32 @@ using namespace std;
 
 }
 
-  int vibora::obtenerDireccionCaveza(){
+  int vibora::obtenerDireccionCaveza(jugador J){
 
     switch (getDirecion())
     {
-    case 'n':
+    case 's':
         setCabeza_y(1);
         return 4;
         break;
-    case 's':
+    case 'n':
         setCabeza_y(-1);
         return 5;
         break;
-    case 'e':
+    case 'o':
         setCabeza_x(1);
         return 7;
         break;
-    case 'o':
+    case 'e':
         setCabeza_x(-1);
         return 6;
         break;
+
     default:
-        cout<<"Valor no valido"<<endl;
+
+          cout<<"Valor no valido"<<endl<<"Vuelva a intenar: "<<getDirecion()<<endl;
+          setDirecion(J.escuchardireccion());
+          obtenerDireccionCaveza(J);
         break;
     }
 

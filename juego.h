@@ -1,4 +1,6 @@
 
+#include "jugador.h"
+#include "vibora.h"
 class juego{
   protected:
       int Tamaño_x;
@@ -19,12 +21,14 @@ class juego{
   int getpuntos ();
   int getCodex(int,int);
 
+  void Dibujar();
 
-
+  void Jugar(vibora ,jugador);
   void Generar_comida();
   bool CheckFood(int ,int);
-  void ColisionDetector(int,int);
+  void ColisionDetector(int,int,jugador);
   void Definir_tablero();
   void  borrarcola(int,int);
 
 };
+

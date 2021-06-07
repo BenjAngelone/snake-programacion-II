@@ -35,6 +35,66 @@ using namespace std;
   int juego::getCodex(int f,int g){
     return Codex[f][g];
   }
+
+void juego::Dibujar(){
+    for(int i =0;i<=getTamaño_y();i++){
+        for(int j =0;j<=getTamaño_x();j++){
+
+            switch (getCodex(j,i))
+            {
+            case 0:
+                cout<<"  ";
+                break;
+            case 4: case 5:case 6:case 7:
+                cout<<"O ";
+                break;
+            case 3:
+                cout<<"| ";
+                break;
+            case -3:
+                cout<<" |"<<endl;
+                break;
+            case 2:
+                cout<<"__";
+                break;
+            case -2:
+                cout<<"__"<<endl;
+                break;
+            case -1:
+                cout<<"@ ";
+                break;
+            case 8:
+                cout<<"* ";
+                break;
+
+            default:
+                break;
+}
+}
+}
+}
+
+  void juego::Jugar(vibora V,jugador J){
+    
+    while(true){
+    system("clear");
+    Dibujar(); 
+    //system("cls");
+    V.setDirecion(J.escuchardireccion());
+    int c=V.obtenerDireccionCaveza(J);   //posicion virtual de la cabeza
+    if(CheckFood(V.getCabeza_x(),V.getCabeza_y())){
+        cout<<"comi"<<endl;
+        Generar_comida(); //come 
+    }
+    ColisionDetector(V.getCabeza_x(),V.getCabeza_y(),J);//detecta coliciones 
+    setCodex(V.getCabeza_x(),V.getCabeza_y(),c);//avanza la cabeza
+    borrarcola(V.getCabeza_x(),V.getCabeza_y());//busca y borra  la cola
+ 
+    
+    
+
+}
+  }
  
 
 
@@ -102,16 +162,17 @@ using namespace std;
             Vp--;
 
   }}
-  void juego::ColisionDetector(int Vcx,int Vcy){
+  void juego::ColisionDetector(int Vcx,int Vcy,jugador J){
     
     int chau;
     if(getCodex(Vcx,Vcy)==3 || getCodex(Vcx,Vcy)==-3 || getCodex(Vcx,Vcy)==2 ||getCodex(Vcx,Vcy)== 5 ||getCodex(Vcx,Vcy)== 7 ||getCodex(Vcx,Vcy)== 4 ||getCodex(Vcx,Vcy)== 6 ||getCodex(Vcx,Vcy)==-2){
       system("clear");
-      cout<<"Game over "<<endl<<"Puntuacion: "<<getpuntos();
+      cout<<"Game over "<<J.getNombre()<<endl<<"Puntuacion: "<<getpuntos();
       cin>>chau;
       return;
   }
   }
+
 
 
 

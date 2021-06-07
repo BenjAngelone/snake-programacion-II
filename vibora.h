@@ -1,7 +1,7 @@
-
+#ifndef _juego_H_
+#define _juego_H_
 #include <string.h>
-
-
+#include "jugador.h"
 class vibora{
   protected:
       int Cabeza_x;
@@ -9,7 +9,7 @@ class vibora{
       int Cabeza_y;
       int Cola_y;
       char Direcion;
-      
+
   public:
   vibora(int, int , int, int,char);
 
@@ -18,13 +18,14 @@ class vibora{
   void setCabeza_y(int);
   void setCola_y(int);
   void setDirecion(char);
-  
-  char getDirecion(); 
+
+  char getDirecion();
   int getCabeza_x();
   int getCola_x();
   int getCabeza_y();
   int getCola_y();
 
   bool obtenerDireccionCola(int,int,int);
-  int obtenerDireccionCaveza();
+  int obtenerDireccionCaveza(jugador);
 };
+#endif
