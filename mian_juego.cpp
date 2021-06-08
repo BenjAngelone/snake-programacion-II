@@ -14,8 +14,6 @@ int main(){
   juego  A(15,16);
   jugador J("BENJA");
   vibora  V(1,1,1,1,'n');
-  A.Definir_tablero();
-  A.Generar_comida();
   A.Jugar(V,J);
 }
 

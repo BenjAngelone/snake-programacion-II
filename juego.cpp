@@ -7,6 +7,8 @@ using namespace std;
       Tamaño_y=y;
       puntos=0;
       Codex[100][100];
+      Definir_tablero();
+      Generar_comida();
     }
 
 
