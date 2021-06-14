@@ -3,8 +3,8 @@
 using namespace std;
 
     juego::juego(int x , int y){
-      Tamaño_x=x;
-      Tamaño_y=y;
+      Tamano_x=x;
+      Tamano_y=y;
       puntos=0;
       Codex[100][100];
       Definir_tablero();
@@ -15,11 +15,11 @@ using namespace std;
   void juego::setpuntos(){
     puntos++;
   }
-  void juego::setTamaño_x(int x){
-    Tamaño_x=x;
+  void juego::setTamano_x(int x){
+    Tamano_x=x;
   }
-  void juego::setTamaño_y(int y){
-    Tamaño_y=y;
+  void juego::setTamano_y(int y){
+    Tamano_y=y;
   }
   void juego::setCodex(int x,int y,int c){
     Codex[x][y]=c;
@@ -28,19 +28,19 @@ using namespace std;
   int juego::getpuntos(){
     return puntos;
   }
-  int juego::getTamaño_x(){
-    return Tamaño_x;
+  int juego::getTamano_x(){
+    return Tamano_x;
   }
-  int juego::getTamaño_y(){
-    return Tamaño_y;
+  int juego::getTamano_y(){
+    return Tamano_y;
   }
   int juego::getCodex(int f,int g){
     return Codex[f][g];
   }
 
-void juego::Dibujar(){
-    for(int i =0;i<=getTamaño_y();i++){
-        for(int j =0;j<=getTamaño_x();j++){
+void juego::Dibujar(){                        
+    for(int i =0;i<=getTamano_y();i++){
+        for(int j =0;j<=getTamano_x();j++){
 
             switch (getCodex(j,i))
             {
@@ -76,54 +76,49 @@ void juego::Dibujar(){
 }
 }
 
-  void juego::Jugar(vibora V,jugador J){
+  void juego::Jugar(vibora V,jugador J){ //reproduce dentro de un while el orden y la logica nescesaria para ejecutar el juego adecuadamente
     
     while(true){
-    system("clear");
-    Dibujar(); 
-    //system("cls");
-    V.setDirecion(J.escuchardireccion());
-    int c=V.obtenerDireccionCaveza(J);   //posicion virtual de la cabeza
-    if(CheckFood(V.getCabeza_x(),V.getCabeza_y())){
-        cout<<"comi"<<endl;
-        Generar_comida(); //come 
+      //system("cls");
+      system("clear");
+      Dibujar(); 
+      V.setDirecion(J.escuchardireccion());
+      int c=V.obtenerDireccionCaveza(J);    //posicion virtual de la cabeza
+      if(CheckFood(V.getCabeza_x(),V.getCabeza_y())){
+          cout<<"comi"<<endl;
+          Generar_comida(); //come 
     }
-    ColisionDetector(V.getCabeza_x(),V.getCabeza_y(),J);//detecta coliciones 
-    setCodex(V.getCabeza_x(),V.getCabeza_y(),c);//avanza la cabeza
+    ColisionDetector(V.getCabeza_x(),V.getCabeza_y(),J); //detecta coliciones 
+    setCodex(V.getCabeza_x(),V.getCabeza_y(),c);//avanza la cabeza a una posicion real
     borrarcola(V.getCabeza_x(),V.getCabeza_y());//busca y borra  la cola
- 
-    
-    
 
 }
-  }
+}
  
-
-
-  void juego::Definir_tablero(){
-      for(int i =0;i<=getTamaño_y();i++){
-        for(int j =0;j<=getTamaño_x();j++){
+  void juego::Definir_tablero(){ //esta funcion dibuja el tablero segun la cantidad de espacios indicados 
+      for(int i =0;i<=getTamano_y();i++){
+        for(int j =0;j<=getTamano_x();j++){
             if(j==0)setCodex(j,i,3);
-            if(j==getTamaño_x())setCodex(j,i,-3);
+            if(j==getTamano_x())setCodex(j,i,-3);
             if(i==0)setCodex(j,i,2);
-            if(i==0 && j==getTamaño_x())setCodex(j,i,-2);
-            if(i==getTamaño_y())setCodex(j,i,2);
+            if(i==0 && j==getTamano_x())setCodex(j,i,-2);
+            if(i==getTamano_y())setCodex(j,i,2);
         }
 }
-  //Codex[1][1]=4;
+  Codex[5][5]=4;
   }
-  void juego::Generar_comida(){
-    int ranx = rand() % (getTamaño_x()-1) + 1;
-    int rany = rand() % (getTamaño_y()-1) + 1;
+  void juego::Generar_comida(){      //genera comida de forma aleatoria
+    int ranx = rand() % (getTamano_x()-1) + 1;
+    int rany = rand() % (getTamano_y()-1) + 1;
     while(getCodex(ranx,rany)!=0){
-        int ranx = rand() % (getTamaño_x()-1) + 1;
-        int rany = rand() % (getTamaño_y()-1) + 1;
+        int ranx = rand() % (getTamano_x()-1) + 1;
+        int rany = rand() % (getTamano_y()-1) + 1;
     }
     setCodex(ranx,rany,8);
 
   }
 
-  bool juego::CheckFood(int Dx,int Dy){
+  bool juego::CheckFood(int Dx,int Dy){ //corrobora si la serpiente ingiere la comida
     if(getCodex(Dx,Dy)==8){
      setpuntos();
       return true;
@@ -164,7 +159,7 @@ void juego::Dibujar(){
             Vp--;
 
   }}
-  void juego::ColisionDetector(int Vcx,int Vcy,jugador J){
+  void juego::ColisionDetector(int Vcx,int Vcy,jugador J){   //detecta si la serpiente coliciona con ella misma o el tablero
     
     int chau;
     if(getCodex(Vcx,Vcy)==3 || getCodex(Vcx,Vcy)==-3 || getCodex(Vcx,Vcy)==2 ||getCodex(Vcx,Vcy)== 5 ||getCodex(Vcx,Vcy)== 7 ||getCodex(Vcx,Vcy)== 4 ||getCodex(Vcx,Vcy)== 6 ||getCodex(Vcx,Vcy)==-2){

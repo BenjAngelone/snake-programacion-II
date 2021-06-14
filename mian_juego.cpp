@@ -4,7 +4,7 @@
 #include "jugador.h"
 #include "vibora.h"
 #include <iostream>
-#include <time.h>
+//#include <time.h>
 
 using namespace std;
 
@@ -12,7 +12,7 @@ using namespace std;
 int main(){
 
   juego  A(15,16);
-  jugador J("BENJA");
+  jugador J("Player 1");
   vibora  V(1,1,1,1,'n');
   A.Jugar(V,J);
 }
